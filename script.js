@@ -47,6 +47,13 @@ let minor_seven    = [0, 3, 7, 10];
 let dominant_seven = [0, 4, 7, 10];
 let diminish_seven = [0, 3, 6, 9];
 
+let chord_information = [
+    {suffix: "maj7", name: "Major Seven",      steps: major_seven},
+    {suffix: "min7", name: "Minor Seven",      steps: minor_seven},
+    {suffix: "7",    name: "Dominant Seven",   steps: dominant_seven},
+    {suffix: "dim7", name: "Diminished Seven", steps: diminish_seven},
+]
+
 let key_containers = [];
 
 function get_chord_info(chord_name) {
@@ -64,23 +71,17 @@ function get_chord_info(chord_name) {
         }
     }
 
-    chord_name = chord_name.substring(chord_info.root.length);
+    if (chord_info.root !== undefined) {
+        chord_name = chord_name.substring(chord_info.root.length); // chop off the root note
+    }
     chord_indexes = []
-    if (chord_name.startsWith("maj7")) {
-        chord_indexes = Array.from(major_seven);
-    }
-    else if (chord_name.startsWith("min7")) {
-        chord_indexes = Array.from(minor_seven);
-    }
-    else if (chord_name.startsWith("dim7")) {
-        chord_indexes = Array.from(diminish_seven);
-    } 
-    else if (chord_name.startsWith("7")) {
-        chord_indexes = Array.from(dominant_seven);
-    }
-
-    for (var i = 0; i < chord_indexes.length; i++) {
-        chord_indexes[i] += chord_info.root_index;
+    for (var i = 0; i < chord_information.length; i++) {
+        if (chord_name.startsWith(chord_information[i].suffix)) {
+            chord_indexes = Array.from(chord_information[i].steps); // gotta clone it
+            for (var i = 0; i < chord_indexes.length; i++) {
+                chord_indexes[i] += chord_info.root_index;
+            }
+        }
     }
 
     chord_info.indexes = chord_indexes;
@@ -105,7 +106,6 @@ function highlightChord(chord_name) {
     resetKeyboardColors();
 
     let chord_info = get_chord_info(chord_name);
-    console.log(chord_info);
 
     for (var i = 0; i < chord_info.indexes.length; i++) {
         key_containers[chord_info.indexes[i]].style.backgroundColor = "#2887e3"; 
@@ -130,4 +130,10 @@ window.onload = () => {
         pianoContainer[0].appendChild(div);
     }
   }
+
+  let chord_textbox = document.getElementById("chord-textbox");
+  chord_textbox.addEventListener('input', function(event) {
+    // console.log(chord_textbox.value);
+    highlightChord(chord_textbox.value);
+  });
 };
