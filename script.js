@@ -137,11 +137,23 @@ function makeRandomChordAndHighlight() {
     highlightChord(chordName);
 }
 
+function checkOrientation() {
+    var overlay = document.getElementById('orientation-overlay');
+    if (window.innerWidth < window.innerHeight) {
+        // Landscape mode
+        overlay.style.display = 'flex';
+    } else {
+        // Portrait mode
+        overlay.style.display = 'none';
+    }
+}
+window.onresize = checkOrientation;
+
 window.onload = () => {
-  //24keys
+    checkOrientation();
+
     for (let index = 0; index <= 23; index++) {
         let div = document.createElement("div");
-        // let which_type = index <= 9 ? "black-key" : "white-key";
         let which_type = key_information(index).accidental ? "black-key" : "white-key";
 
         key_containers.push(div);

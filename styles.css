@@ -140,3 +140,28 @@ body {
     font-size: 0.3em;
   }
 }
+
+#orientation-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+}
+
+
+@media (orientation: landscape) {
+
+}
+
+@media (orientation: portrait) {
+
+}
