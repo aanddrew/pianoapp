@@ -20,6 +20,9 @@ body {
   margin: 0;
   background-color: #2887e3;
 }
+.black-keys-container {
+    position: relative;
+}
 .piano-outer-div {
   display: flex;
   justify-content: center;
@@ -62,34 +65,34 @@ body {
   background-color: #24272e;
 }
 .black-key:nth-child(1) {
-  left: 4em;
+  left: 3em;
 }
 .black-key:nth-child(2) {
-  left: 8.37em;
+  left: 7.37em;
 }
 .black-key:nth-child(3) {
-  left: 17.12em;
+  left: 16.12em;
 }
 .black-key:nth-child(4) {
-  left: 21.5em;
+  left: 20.5em;
 }
 .black-key:nth-child(5) {
-  left: 25.87em;
+  left: 24.87em;
 }
 .black-key:nth-child(6) {
-  left: 34.62em;
+  left: 33.62em;
 }
 .black-key:nth-child(7) {
-  left: 39em;
+  left: 38em;
 }
 .black-key:nth-child(8) {
-  left: 47.75em;
+  left: 46.75em;
 }
 .black-key:nth-child(9) {
-  left: 52.12em;
+  left: 51.12em;
 }
 .black-key:nth-child(10) {
-  left: 56.5em;
+  left: 55.5em;
 }
 
 @media screen and (max-width: 1000px) {
