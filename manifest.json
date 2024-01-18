@@ -1,0 +1,15 @@
+{
+  "name": "Chord Tool",
+  "short_name": "ChordTool",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#2887e3",
+  "theme_color": "#ffffff",
+  "orientation": "landscape-primary",
+  "icons": [
+    {
+      "src": "/images/piano-emoji-icon.svg",
+      "type": "image/svg", "sizes": "any"
+    }
+  ]
+}
