@@ -11,21 +11,24 @@
     margin-right: 0.25em;
 }
 
+/* Style for the checkbox container */
 .checkbox-container {
     padding: 15px;
     border-radius: 1em;
-    outline: none;
     display: flex;
+    align-items: center; /* Align items vertically in the center */
     background-color: #ebebeb;
 }
 
+/* Style for the checkbox input */
 .checkbox-container input[type=checkbox] {
-    scale: 2;
+    transform: scale(2); /* Corrected property */
     margin: 0.25em;
 }
 
+/* Style for the text next to the checkbox */
 .checkbox-container .checkbox-side-text {
-    margin-top: 0.1em;
+    margin-left: 0.5em; /* Adjust the margin for spacing */
 }
 
 #quiz-mode-container div {
