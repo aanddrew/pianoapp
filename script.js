@@ -67,16 +67,16 @@ function get_chord_info(chord_name) {
     chord_name = chord_name.substring(chord_info.root.length);
     chord_indexes = []
     if (chord_name.startsWith("maj7")) {
-        chord_indexes = major_seven;
+        chord_indexes = Array.from(major_seven);
     }
     else if (chord_name.startsWith("min7")) {
-        chord_indexes = minor_seven;
+        chord_indexes = Array.from(minor_seven);
     }
     else if (chord_name.startsWith("dim7")) {
-        chord_indexes = diminish_seven;
+        chord_indexes = Array.from(diminish_seven);
     } 
     else if (chord_name.startsWith("7")) {
-        chord_indexes = dominant_seven;
+        chord_indexes = Array.from(dominant_seven);
     }
 
     for (var i = 0; i < chord_indexes.length; i++) {
@@ -88,17 +88,28 @@ function get_chord_info(chord_name) {
     return chord_info;
 }
 
-function highlightChord(chord_name) {
-    let chord_info = get_chord_info(chord_name);
-    console.log(chord_info);
+function resetKeyboardColors() {
+    for (var i = 0; i < key_containers.length; i++) {
+        let key_is_black = key_information(i).accidental;
 
-    for (var i = 0; i < chord_info.indexes; i++) {
-        key_containers[chord_info.indexes[i]].style.backgroundColor = "red"; 
+        if (key_is_black) {
+            key_containers[i].style.backgroundColor = "#24272e"; 
+        }
+        else {
+            key_containers[i].style.backgroundColor = "#ffffff"; 
+        }
     }
 }
 
-function resetKeyboardColors() {
+function highlightChord(chord_name) {
+    resetKeyboardColors();
 
+    let chord_info = get_chord_info(chord_name);
+    console.log(chord_info);
+
+    for (var i = 0; i < chord_info.indexes.length; i++) {
+        key_containers[chord_info.indexes[i]].style.backgroundColor = "#2887e3"; 
+    }
 }
 
 window.onload = () => {
