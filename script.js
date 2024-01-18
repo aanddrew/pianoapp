@@ -112,6 +112,22 @@ function highlightChord(chord_name) {
     }
 }
 
+function makeRandomChord() {
+    let key_index = Math.floor(Math.random() * keys.length);
+    let chord_index = Math.floor(Math.random() * chord_information.length);
+
+    return keys[key_index].names[0] + chord_information[chord_index].suffix;
+}
+
+function makeRandomChordAndHighlight() {
+    let chordName = makeRandomChord();
+
+    let chord_textbox = document.getElementById("chord-textbox");
+    chord_textbox.value = chordName;
+
+    highlightChord(chordName);
+}
+
 window.onload = () => {
   //24keys
   for (let index = 0; index <= 23; index++) {
