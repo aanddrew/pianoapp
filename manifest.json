@@ -7,11 +7,17 @@
   "background_color": "#2887e3",
   "theme_color": "#ffffff",
   "icons": [
-    {
-      "src": "/images/piano-emoji-icon.svg",
-      "type": "image/svg+xml", 
-      "sizes": "48x48 72x72 96x96 128x128 256x256",
-      "purpose": "any"
-    }
+    { "src": "/images/icon-58.png", "type": "image/png", "sizes": "58x58" },
+    { "src": "/images/icon-76.png", "type": "image/png", "sizes": "76x76" },
+    { "src": "/images/icon-80.png", "type": "image/png", "sizes": "80x80" },
+    { "src": "/images/icon-87.png", "type": "image/png", "sizes": "87x87" },
+    { "src": "/images/icon-114.png", "type": "image/png", "sizes": "114x114" },
+    { "src": "/images/icon-120.png", "type": "image/png", "sizes": "120x120" },
+    { "src": "/images/icon-152.png", "type": "image/png", "sizes": "152x152" },
+    { "src": "/images/icon-167.png", "type": "image/png", "sizes": "167x167" },
+    { "src": "/images/icon-180.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/images/icon-256.png", "type": "image/png", "sizes": "256x256" },
+    { "src": "/images/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/images/icon-1024.png", "type": "image/png", "sizes": "1024x1024" }
   ]
 }
