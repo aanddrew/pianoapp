@@ -94,7 +94,7 @@ function resetKeyboardColors() {
         let key_is_black = key_information(i).accidental;
 
         if (key_is_black) {
-            key_containers[i].style.backgroundColor = "#24272e"; 
+            key_containers[i].style.backgroundColor = "#070a0f"; 
         }
         else {
             key_containers[i].style.backgroundColor = "#ffffff"; 

@@ -3,6 +3,30 @@
     justify-content: center;
     align-items: center;
     margin: 1em;
+    font-size: 16px;
+}
+
+.control-panel div {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+}
+
+#quiz-mode-checkbox {
+    scale: 2;
+    margin: 0.25em;
+}
+
+#quiz-mode-container {
+    padding: 15px;
+    border-radius: 1em;
+    outline: none;
+    display: flex;
+    background-color: #ebebeb;
+}
+
+#quiz-mode-container div {
+    width: fit-content;
+    block-size: fit-content;
 }
 
 /* Style for the text input */
@@ -19,6 +43,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: #2887e3;
+  font-family: Arial, sans-serif;
 }
 .black-keys-container {
     position: relative;
