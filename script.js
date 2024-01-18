@@ -2,6 +2,10 @@ let pianoContainer = document.getElementsByClassName("piano-container");
 let blackKeyContainer = document.getElementsByClassName("black-keys-container")
 const base = "./audio/";
 
+var always_show = true;
+var show = true;
+var currentChord = "";
+
 let scale_pattern = [0, 2, 4, 5, 7, 9, 11]
 
 let keys = [
@@ -105,6 +109,10 @@ function resetKeyboardColors() {
 function highlightChord(chord_name) {
     resetKeyboardColors();
 
+    if (!show) {
+        return;
+    }
+
     let chord_info = get_chord_info(chord_name);
 
     for (var i = 0; i < chord_info.indexes.length; i++) {
@@ -121,6 +129,7 @@ function makeRandomChord() {
 
 function makeRandomChordAndHighlight() {
     let chordName = makeRandomChord();
+    currentChord = chordName;
 
     let chord_textbox = document.getElementById("chord-textbox");
     chord_textbox.value = chordName;
@@ -149,11 +158,35 @@ window.onload = () => {
 
     let chord_textbox = document.getElementById("chord-textbox");
     chord_textbox.addEventListener('input', function(event) {
+        currentChord = chord_textbox.value;
         highlightChord(chord_textbox.value);
     });
 
+    let show_checkbox = document.getElementById("show-checkbox");
+    let always_show_checkbox = document.getElementById("always-show-checkbox");
+    show = show_checkbox.checked;
+    always_show = always_show_checkbox.checked;
+
     let new_chord_button = document.getElementById("new-chord-button");
     new_chord_button.addEventListener('click', function(event) {
+        show = always_show;
+        show_checkbox.checked = show;
+
         makeRandomChordAndHighlight();
     });
+
+    always_show_checkbox.addEventListener('click', function(event) {
+        always_show = always_show_checkbox.checked;
+    });
+
+    show_checkbox.addEventListener('click', function(event) {
+        show = show_checkbox.checked;
+
+        if (show) {
+            highlightChord(currentChord);
+        }
+        else {
+            resetKeyboardColors();
+        }
+    })
 };

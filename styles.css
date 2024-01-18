@@ -11,17 +11,21 @@
     margin-right: 0.25em;
 }
 
-#quiz-mode-checkbox {
-    scale: 2;
-    margin: 0.25em;
-}
-
-#quiz-mode-container {
+.checkbox-container {
     padding: 15px;
     border-radius: 1em;
     outline: none;
     display: flex;
     background-color: #ebebeb;
+}
+
+.checkbox-container input[type=checkbox] {
+    scale: 2;
+    margin: 0.25em;
+}
+
+.checkbox-container .checkbox-side-text {
+    margin-top: 0.1em;
 }
 
 #quiz-mode-container div {
