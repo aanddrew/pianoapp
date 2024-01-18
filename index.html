@@ -1,33 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Piano Chord Practice</title>
-</head>
-<body>
-
-    <button onclick="generateChord()">Generate Chord</button>
-
-    <div id="piano-container" class="hidden">
-        <div class="keyboard">
-            <div class="key white" id="C">C</div>
-            <div class="key black" id="C_sharp">C#</div>
-            <div class="key white" id="D">D</div>
-            <div class="key black" id="D_sharp">D#</div>
-            <div class="key white" id="E">E</div>
-            <div class="key white" id="F">F</div>
-            <div class="key black" id="F_sharp">F#</div>
-            <div class="key white" id="G">G</div>
-            <div class="key black" id="G_sharp">G#</div>
-            <div class="key white" id="A">A</div>
-            <div class="key black" id="A_sharp">A#</div>
-            <div class="key white" id="B">B</div>
-            <!-- Add more keys as needed -->
-        </div>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chord Tool</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="https://images.emojiterra.com/google/noto-emoji/unicode-15.1/color/svg/1f3b9.svg">
+  </head>
+  <body>
+    <div class="control-panel">
+        <input type="text" class="rounded-input" placeholder="example: Dmaj7"/>
     </div>
-
+    <div class="piano-outer-div">
+        <div class="piano-container"></div>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

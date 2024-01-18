@@ -1,27 +1,13 @@
-function generateChord() {
-    // Replace this with your logic to generate random chords
-    const randomChord = "Dmaj7";
+let pianoContainer = document.getElementsByClassName("piano-container");
+const base = "./audio/";
+window.onload = () => {
+  //24keys
+  for (let index = 1; index <= 24; index++) {
+    let div = document.createElement("div");
+    div.classList.add("key", index <= 10 ? "black-key" : "white-key");
+    //For playing audio on click
+    const number = index <= 9 ? "0" + index : index;
 
-    // Show piano
-    document.getElementById("piano-container").classList.remove("hidden");
-
-    // Highlight keys based on the chord
-    highlightKeys(randomChord);
-}
-
-function highlightKeys(chord) {
-    // Reset key colors
-    const keys = document.querySelectorAll(".key");
-    keys.forEach(key => key.style.backgroundColor = "");
-
-    // Replace this with your logic to map chord to keys
-    const chordKeys = ["D", "F#", "A", "C#"];
-
-    // Highlight keys in the chord
-    chordKeys.forEach(key => {
-        const element = document.getElementById(key.replace("#", "_sharp"));
-        if (element) {
-            element.style.backgroundColor = "blue";
-        }
-    });
-}
+    pianoContainer[0].appendChild(div);
+  }
+};
