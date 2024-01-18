@@ -3,9 +3,9 @@
   "short_name": "ChordTool",
   "start_url": "index.html",
   "display": "standalone",
+  "orientation": "landscape",
   "background_color": "#2887e3",
   "theme_color": "#ffffff",
-  "orientation": "landscape-primary",
   "icons": [
     {
       "src": "/images/piano-emoji-icon.svg",
