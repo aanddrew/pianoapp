@@ -130,26 +130,30 @@ function makeRandomChordAndHighlight() {
 
 window.onload = () => {
   //24keys
-  for (let index = 0; index <= 23; index++) {
-    let div = document.createElement("div");
-    // let which_type = index <= 9 ? "black-key" : "white-key";
-    let which_type = key_information(index).accidental ? "black-key" : "white-key";
+    for (let index = 0; index <= 23; index++) {
+        let div = document.createElement("div");
+        // let which_type = index <= 9 ? "black-key" : "white-key";
+        let which_type = key_information(index).accidental ? "black-key" : "white-key";
 
-    key_containers.push(div);
+        key_containers.push(div);
 
-    div.classList.add("key", which_type);
+        div.classList.add("key", which_type);
 
-    if (which_type == "black-key") {
-        blackKeyContainer[0].appendChild(div);
+        if (which_type == "black-key") {
+            blackKeyContainer[0].appendChild(div);
+        }
+        else {
+            pianoContainer[0].appendChild(div);
+        }
     }
-    else {
-        pianoContainer[0].appendChild(div);
-    }
-  }
 
-  let chord_textbox = document.getElementById("chord-textbox");
-  chord_textbox.addEventListener('input', function(event) {
-    // console.log(chord_textbox.value);
-    highlightChord(chord_textbox.value);
-  });
+    let chord_textbox = document.getElementById("chord-textbox");
+    chord_textbox.addEventListener('input', function(event) {
+        highlightChord(chord_textbox.value);
+    });
+
+    let new_chord_button = document.getElementById("new-chord-button");
+    new_chord_button.addEventListener('click', function(event) {
+        makeRandomChordAndHighlight();
+    });
 };
