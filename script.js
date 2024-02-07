@@ -79,7 +79,6 @@ function get_chord_info(chord_name) {
     for (var i = 0; i < all_key_names.length; i++) {
         key_name = all_key_names[i];
         if (chord_name.startsWith(key_name)) {
-            //console.log(chord_name, key_name, chord_name.startsWith(key_name));
             chord_info.root = key_name;
             chord_info.root_index = get_key_index(key_name);
             break;
@@ -107,7 +106,6 @@ function get_chord_info(chord_name) {
             new_size = (new_size + 1) / 2; // a 7th chord has 4 notes, 9th has 5...
         }
         chord_size = new_size;
-        console.log(chord_name, new_size);
     }
 
     chord_indexes = [];
