@@ -147,7 +147,9 @@ function highlightChord(chord_name) {
 
     for (var i = 0; i < chord_info.indexes.length; i++) {
         chord_index = chord_info.indexes[i];
-        key_containers[chord_index].style.backgroundColor = light_blue;
+        if (chord_index < key_containers.length) {
+            key_containers[chord_index].style.backgroundColor = light_blue;
+        }
 
         if (inversions_on) {
             inversion = chord_index - 12;
@@ -163,9 +165,20 @@ function highlightChord(chord_name) {
 
 function makeRandomChord() {
     let key_index = Math.floor(Math.random() * keys.length);
-    let chord_index = Math.floor(Math.random() * chord_information.length);
+    let chord_suffix_index = Math.floor(Math.random() * chord_suffixes.length);
 
-    return keys[key_index].names[0] + chord_information[chord_index].suffix;
+    let root_note = keys[key_index].names[0];
+    let chord_suffix = chord_suffixes[chord_suffix_index];
+
+    let available_sizes = ["", "7", "9", "11"];
+    if (chord_suffix == "dim") {
+        available_sizes = ["", "7"];
+    }
+
+    let chord_size_index = Math.floor(Math.random() * available_sizes.length);
+    let chord_size = available_sizes[chord_size_index];
+
+    return root_note + chord_suffix + chord_size;
 }
 
 function makeRandomChordAndHighlight() {
