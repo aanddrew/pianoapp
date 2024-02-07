@@ -1,6 +1,5 @@
 let pianoContainer = document.getElementsByClassName("piano-container");
 let blackKeyContainer = document.getElementsByClassName("black-keys-container")
-const base = "./audio/";
 
 var always_show = true;
 var show = true;
@@ -59,15 +58,6 @@ let chord_patterns = {
     "dim": diminished_pattern,
     "": dominant_pattern,
 };
-
-/*
-let chord_information = [
-    {suffix: "maj7", name: "Major Seven",      steps: major_seven},
-    {suffix: "min7", name: "Minor Seven",      steps: minor_seven},
-    {suffix: "7",    name: "Dominant Seven",   steps: dominant_seven},
-    {suffix: "dim7", name: "Diminished Seven", steps: diminish_seven},
-]
-*/
 
 let key_containers = [];
 
