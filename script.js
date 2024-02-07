@@ -4,6 +4,7 @@ const base = "./audio/";
 
 var always_show = true;
 var show = true;
+var inversions_on = true;
 var currentChord = "";
 
 let scale_pattern = [0, 2, 4, 5, 7, 9, 11]
@@ -46,17 +47,27 @@ function get_key_index(key_name) {
     return -1;
 }
 
-let major_seven    = [0, 4, 7, 11];
-let minor_seven    = [0, 3, 7, 10];
-let dominant_seven = [0, 4, 7, 10];
-let diminish_seven = [0, 3, 6, 9];
+let major_pattern    = [0, 4, 7, 11, 14, 18];
+let minor_pattern    = [0, 3, 7, 10, 14, 18];
+let dominant_pattern = [0, 4, 7, 10, 14, 18];
+let diminished_pattern = [0, 3, 6, 9];
 
+chord_suffixes = [ "maj", "min", "dim", "" ]
+let chord_patterns = {
+    "maj": major_pattern,
+    "min": minor_pattern,
+    "dim": diminished_pattern,
+    "": dominant_pattern,
+};
+
+/*
 let chord_information = [
     {suffix: "maj7", name: "Major Seven",      steps: major_seven},
     {suffix: "min7", name: "Minor Seven",      steps: minor_seven},
     {suffix: "7",    name: "Dominant Seven",   steps: dominant_seven},
     {suffix: "dim7", name: "Diminished Seven", steps: diminish_seven},
 ]
+*/
 
 let key_containers = [];
 
@@ -74,18 +85,34 @@ function get_chord_info(chord_name) {
             break;
         }
     }
-
     if (chord_info.root !== undefined) {
         chord_name = chord_name.substring(chord_info.root.length); // chop off the root note
     }
+
     chord_indexes = []
-    for (var i = 0; i < chord_information.length; i++) {
-        if (chord_name.startsWith(chord_information[i].suffix)) {
-            chord_indexes = Array.from(chord_information[i].steps); // gotta clone it
-            for (var i = 0; i < chord_indexes.length; i++) {
-                chord_indexes[i] += chord_info.root_index;
-            }
+    chord_pattern = dominant_pattern; 
+    for (var i = 0; i < chord_suffixes.length; i++) {
+        chord_suffix = chord_suffixes[i];
+        if (chord_name.startsWith(chord_suffix)) {
+            chord_pattern = chord_patterns[chord_suffix];
+            chord_name = chord_name.substring(chord_suffix.length); 
+            break;
         }
+    }
+
+    chord_size = 3; // triad by default
+    if (chord_name.length > 0) {
+        new_size = parseInt(chord_name);
+        if (!isNaN(new_size)) {
+            new_size = (new_size + 1) / 2; // a 7th chord has 4 notes, 9th has 5...
+        }
+        chord_size = new_size;
+        console.log(chord_name, new_size);
+    }
+
+    chord_indexes = [];
+    for (var i = 0; i < chord_size && i < chord_pattern.length; i++) {
+        chord_indexes.push(chord_info.root_index + chord_pattern[i]);
     }
 
     chord_info.indexes = chord_indexes;
@@ -115,8 +142,22 @@ function highlightChord(chord_name) {
 
     let chord_info = get_chord_info(chord_name);
 
+    let light_blue = "#2887e3"; 
+    let light_orange = "#fda172";
+
     for (var i = 0; i < chord_info.indexes.length; i++) {
-        key_containers[chord_info.indexes[i]].style.backgroundColor = "#2887e3"; 
+        chord_index = chord_info.indexes[i];
+        key_containers[chord_index].style.backgroundColor = light_blue;
+
+        if (inversions_on) {
+            inversion = chord_index - 12;
+            if (inversion < 0) {
+                inversion += 24;
+            }
+            if (inversion < key_containers.length) {
+                key_containers[inversion].style.backgroundColor = light_orange;
+            }
+        }
     }
 }
 
@@ -173,11 +214,14 @@ window.onload = () => {
         currentChord = chord_textbox.value;
         highlightChord(chord_textbox.value);
     });
+    currentChord = chord_textbox.value;
 
     let show_checkbox = document.getElementById("show-checkbox");
     let always_show_checkbox = document.getElementById("always-show-checkbox");
+    let inversions_checkbox = document.getElementById("inversions-checkbox");
     show = show_checkbox.checked;
     always_show = always_show_checkbox.checked;
+    inversions_on = inversions_checkbox.checked;
 
     let new_chord_button = document.getElementById("new-chord-button");
     new_chord_button.addEventListener('click', function(event) {
@@ -191,6 +235,12 @@ window.onload = () => {
         always_show = always_show_checkbox.checked;
     });
 
+    inversions_checkbox.addEventListener('click', function(event) {
+        inversions_on = inversions_checkbox.checked;
+        highlightChord(currentChord);
+    });
+    inversions_on = inversions_checkbox.checked;
+
     show_checkbox.addEventListener('click', function(event) {
         show = show_checkbox.checked;
 
@@ -201,4 +251,6 @@ window.onload = () => {
             resetKeyboardColors();
         }
     })
+
+    highlightChord(chord_textbox.value);
 };
